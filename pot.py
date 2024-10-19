@@ -3,6 +3,8 @@ from tkinter import filedialog, messagebox
 from PIL import Image, ImageTk
 import math
 
+MAX_PREVIEW_SIZE = (300, 300)
+
 def nearest_power_of_two(n):
     return 2 ** int(math.log2(n))
 
@@ -20,6 +22,10 @@ def auto_crop(image):
     else:
         return image  
 
+def create_thumbnail(image):
+    image.thumbnail(MAX_PREVIEW_SIZE)
+    return image
+
 def process_image():
     global img_display
     file_path = filedialog.askopenfilename(
@@ -33,10 +39,12 @@ def process_image():
 
     cropped_img = auto_crop(resized_img)
 
-    img_display = ImageTk.PhotoImage(cropped_img)
+    thumbnail_img = create_thumbnail(cropped_img.copy()) 
+
+    img_display = ImageTk.PhotoImage(thumbnail_img)
 
     canvas.create_image(10, 10, anchor=tk.NW, image=img_display)
-    canvas.config(width=cropped_img.width, height=cropped_img.height)
+    canvas.config(width=thumbnail_img.width, height=thumbnail_img.height)
 
     save_button.config(state=tk.NORMAL)
 
