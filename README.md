@@ -15,8 +15,9 @@ Here's a quick look at how the tool works:
 
 1. Select an image file.
 2. The image is resized to the nearest power of two.
-3. The resized image is automatically cropped.
-4. The processed image is displayed on the GUI and can be saved.
+3. The resized image is automatically cropped as the original image was.
+4. or you can resize the image by yourself.
+5. The processed image is displayed on the GUI and can be saved.
 
 
 ### Prerequisites
